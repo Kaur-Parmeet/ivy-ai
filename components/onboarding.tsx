@@ -10,7 +10,10 @@ export type OnboardingData = {
   ageGroup: string
   profession: string
   purpose: string
+  experience: string
+  responseStyle: string
   favoriteAnimal: string
+  topics: string
 }
 
 const AGE_GROUPS = ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"]
@@ -22,6 +25,24 @@ const PURPOSES = [
   "Coding & development",
   "Personal assistant",
   "Just exploring",
+]
+
+const EXPERIENCE_LEVELS = [
+  "New to AI assistants",
+  "I've used a few",
+  "I use them regularly",
+  "Power user",
+]
+
+const RESPONSE_STYLES = ["Concise & direct", "Balanced", "Detailed & thorough", "Friendly & casual"]
+
+const TOPICS = [
+  "Technology",
+  "Business & finance",
+  "Health & wellness",
+  "Arts & culture",
+  "Science & nature",
+  "Everyday life",
 ]
 
 type FieldProps = {
@@ -48,14 +69,26 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
   const [ageGroup, setAgeGroup] = useState("")
   const [profession, setProfession] = useState("")
   const [purpose, setPurpose] = useState("")
+  const [experience, setExperience] = useState("")
+  const [responseStyle, setResponseStyle] = useState("")
   const [favoriteAnimal, setFavoriteAnimal] = useState("")
+  const [topics, setTopics] = useState("")
 
-  const isValid = ageGroup && profession.trim() && purpose && favoriteAnimal
+  const isValid =
+    ageGroup && profession.trim() && purpose && experience && responseStyle && favoriteAnimal && topics
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!isValid) return
-    onComplete({ ageGroup, profession: profession.trim(), purpose, favoriteAnimal })
+    onComplete({
+      ageGroup,
+      profession: profession.trim(),
+      purpose,
+      experience,
+      responseStyle,
+      favoriteAnimal,
+      topics,
+    })
   }
 
   return (
@@ -125,6 +158,42 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
             </select>
           </Field>
 
+          <Field label="How familiar are you with AI assistants?" htmlFor="experience">
+            <select
+              id="experience"
+              className={selectClass}
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+            >
+              <option value="" disabled>
+                Select your experience level
+              </option>
+              {EXPERIENCE_LEVELS.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </Field>
+
+          <Field label="Which topics interest you most?" htmlFor="topics">
+            <select
+              id="topics"
+              className={selectClass}
+              value={topics}
+              onChange={(e) => setTopics(e.target.value)}
+            >
+              <option value="" disabled>
+                Select a topic
+              </option>
+              {TOPICS.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </Field>
+
           <Field label="What's your favorite animal?" htmlFor="favoriteAnimal">
             <select
               id="favoriteAnimal"
@@ -144,6 +213,24 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
             <p className="text-xs text-muted-foreground">
               Helps us tune Aria&apos;s personality to your taste.
             </p>
+          </Field>
+
+          <Field label="How should Aria respond to you?" htmlFor="responseStyle">
+            <select
+              id="responseStyle"
+              className={selectClass}
+              value={responseStyle}
+              onChange={(e) => setResponseStyle(e.target.value)}
+            >
+              <option value="" disabled>
+                Select a response style
+              </option>
+              {RESPONSE_STYLES.map((style) => (
+                <option key={style} value={style}>
+                  {style}
+                </option>
+              ))}
+            </select>
           </Field>
 
           <Button type="submit" className="w-full" size="lg" disabled={!isValid}>

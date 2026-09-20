@@ -41,15 +41,23 @@ function getSound(animal: string): string {
 
 /**
  * Builds a reply made entirely of the user's favorite-animal sound.
- * The number of repetitions scales with the length of the user's prompt,
- * so longer prompts get longer "answers".
+ * The reply length is loosely correlated with the prompt length, but
+ * intentionally varied so it never mirrors the prompt exactly — sometimes
+ * shorter, sometimes longer, for a more natural, unpredictable feel.
  */
 export function buildAnimalReply(animal: string, prompt: string): string {
   const sound = getSound(animal)
 
-  // Base the reply length on the word count of the prompt, with gentle scaling.
   const wordCount = prompt.trim().split(/\s+/).filter(Boolean).length
-  const reps = Math.min(Math.max(wordCount, 1), 40)
+
+  // Use the prompt length as a loose anchor, then vary around it with a
+  // random multiplier and jitter so the reply is shorter or longer than
+  // the prompt rather than an exact one-to-one match.
+  const multiplier = 0.5 + Math.random() * 1.5 // 0.5x – 2x the prompt length
+  const jitter = Math.floor(Math.random() * 5) - 2 // -2 .. +2
+  const raw = Math.round(wordCount * multiplier) + jitter
+
+  const reps = Math.min(Math.max(raw, 1), 40)
 
   const words = Array.from({ length: reps }, () => sound)
 
