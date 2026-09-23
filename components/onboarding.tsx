@@ -14,6 +14,7 @@ export type OnboardingData = {
   responseStyle: string
   favoriteAnimal: string
   topics: string
+  musicPreference: string
 }
 
 const AGE_GROUPS = ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"]
@@ -45,6 +46,8 @@ const TOPICS = [
   "Everyday life",
 ]
 
+const MUSIC_PREFERENCES = ["Pop", "Rock", "Hip-hop & R&B", "Classical", "Electronic", "Jazz & blues", "Podcasts"]
+
 type FieldProps = {
   label: string
   htmlFor: string
@@ -73,9 +76,10 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
   const [responseStyle, setResponseStyle] = useState("")
   const [favoriteAnimal, setFavoriteAnimal] = useState("")
   const [topics, setTopics] = useState("")
+  const [musicPreference, setMusicPreference] = useState("")
 
   const isValid =
-    ageGroup && profession.trim() && purpose && experience && responseStyle && favoriteAnimal && topics
+    ageGroup && profession.trim() && purpose && experience && responseStyle && favoriteAnimal && topics && musicPreference
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -88,6 +92,7 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
       responseStyle,
       favoriteAnimal,
       topics,
+      musicPreference,
     })
   }
 
@@ -189,6 +194,24 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
               {TOPICS.map((t) => (
                 <option key={t} value={t}>
                   {t}
+                </option>
+              ))}
+            </select>
+          </Field>
+
+          <Field label="What kind of music do you enjoy?" htmlFor="musicPreference">
+            <select
+              id="musicPreference"
+              className={selectClass}
+              value={musicPreference}
+              onChange={(e) => setMusicPreference(e.target.value)}
+            >
+              <option value="" disabled>
+                Select a music preference
+              </option>
+              {MUSIC_PREFERENCES.map((genre) => (
+                <option key={genre} value={genre}>
+                  {genre}
                 </option>
               ))}
             </select>
