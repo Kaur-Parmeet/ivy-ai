@@ -76,7 +76,7 @@ export function Chat({ profile }: { profile: OnboardingData }) {
           <Sparkles className="size-4" aria-hidden="true" />
         </div>
         <div className="leading-tight">
-          <p className="text-sm font-semibold text-foreground">Aria</p>
+          <p className="text-sm font-semibold text-foreground">Ivy</p>
           <p className="text-xs text-muted-foreground">AI Assistant</p>
         </div>
       </header>
@@ -102,9 +102,9 @@ export function Chat({ profile }: { profile: OnboardingData }) {
                 autoGrow()
               }}
               onKeyDown={handleKeyDown}
-              placeholder="Message Aria…"
+              placeholder="Message Ivy…"
               className="max-h-[200px] flex-1 resize-none bg-transparent px-2 py-1.5 text-sm text-foreground outline-none placeholder:text-muted-foreground"
-              aria-label="Message Aria"
+              aria-label="Message Ivy"
             />
             <Button
               type="button"
@@ -118,7 +118,7 @@ export function Chat({ profile }: { profile: OnboardingData }) {
             </Button>
           </div>
           <p className="mt-2 text-center text-xs text-muted-foreground">
-            Aria can make mistakes. Consider checking important information.
+            Ivy can make mistakes. Consider checking important information.
           </p>
         </div>
       </div>

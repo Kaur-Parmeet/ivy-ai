@@ -104,10 +104,10 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
             <Sparkles className="size-6" aria-hidden="true" />
           </div>
           <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground">
-            Welcome to Aria
+            Welcome to Ivy
           </h1>
           <p className="mt-2 text-pretty text-sm text-muted-foreground">
-            Tell us a little about yourself so Aria can give you a more personalized experience. This
+            Tell us a little about yourself so Ivy can give you a more personalized experience. This
             only takes a moment.
           </p>
         </div>
@@ -145,7 +145,7 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
             />
           </Field>
 
-          <Field label="What will you mainly use Aria for?" htmlFor="purpose">
+          <Field label="What will you mainly use Ivy for?" htmlFor="purpose">
             <select
               id="purpose"
               className={selectClass}
@@ -234,11 +234,11 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
               ))}
             </select>
             <p className="text-xs text-muted-foreground">
-              Helps us tune Aria&apos;s personality to your taste.
+              Helps us tune Ivy&apos;s personality to your taste.
             </p>
           </Field>
 
-          <Field label="How should Aria respond to you?" htmlFor="responseStyle">
+          <Field label="How should Ivy respond to you?" htmlFor="responseStyle">
             <select
               id="responseStyle"
               className={selectClass}
@@ -257,7 +257,7 @@ export function Onboarding({ onComplete }: { onComplete: (data: OnboardingData) 
           </Field>
 
           <Button type="submit" className="w-full" size="lg" disabled={!isValid}>
-            Continue to Aria
+            Continue to Ivy
           </Button>
 
           <p className="text-center text-xs text-muted-foreground">

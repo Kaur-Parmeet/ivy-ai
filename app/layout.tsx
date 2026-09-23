@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Aria — Your AI Assistant',
-  description: 'Aria is a smart, personalized AI assistant that helps you work, learn, and create.',
+  title: 'Ivy — Your AI Assistant',
+  description: 'Ivy is a smart, personalized AI assistant that helps you work, learn, and create.',
   generator: 'v0.app',
   icons: {
     icon: [
